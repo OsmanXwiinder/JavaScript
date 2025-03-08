@@ -1,0 +1,16 @@
+{
+  "name": "finctheavaragetimeyourservertaking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node newindex.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "zod": "^3.24.2"
+  }
+}
