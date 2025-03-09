@@ -1,7 +1,7 @@
 
 // 	const newArray = [];
 
-const { join } = require("path");
+// const { join } = require("path");
 
 // const { log } = require("node:console");
 
@@ -82,70 +82,80 @@ const { join } = require("path");
         //     return n*2
         // }
 
-        // const ans = map(arrayy,fn); 
-        // console.log(ans)
-            // replace
-            const str = "hello world";
-            console.log(str.replace('world' , 'javascript'))
+        // // const ans = map(arrayy,fn); 
+        // // console.log(ans)
+        //     // replace
+        //     const str = "hello world";
+        //     console.log(str.replace('world' , 'javascript'))
 
 
-            //split
-            const value = "hi my name is osman";
-            const word = value.split(" ");
+        //     //split
+        //     const value = "hi my name is osman";
+        //     const word = value.split(" ");
 
-            console.log(word)
+        //     console.log(word)
 
-            //trim
-            const arr = "    osman saifi     ";
-            const newarr = arr.trim(" ");
+        //     //trim
+        //     const arr = "    osman saifi     ";
+        //     const newarr = arr.trim(" ");
             
-            console.log(newarr)
+        //     console.log(newarr)
 
-            const oarr = "osmanSaifi";
-            console.log(oarr.toLocaleLowerCase())
-            console.log(oarr.toUpperCase());
+        //     const oarr = "osmanSaifi";
+        //     console.log(oarr.toLocaleLowerCase())
+        //     console.log(oarr.toUpperCase());
 
-            const narr = ['1','2','3'];
-            for(let i=0; i<narr.length; i++){
-               const newValue = parseInt(narr[i])
-               console.log(newValue)
+        //     const narr = ['1','2','3'];
+        //     for(let i=0; i<narr.length; i++){
+        //        const newValue = parseInt(narr[i])
+        //        console.log(newValue)
+        //     }
+            
+        //     function pushValue(marr, ele){
+        //         console.log(marr)
+
+        //         marr.push(ele)
+        //         console.log(marr)
+
+        //         marr.pop(marr.length -1)
+        //         console.log(marr)
+
+        //         marr.shift(0)
+        //         console.log(marr)
+
+        //         marr.unshift(0);
+        //         console.log(marr)
+        //     }
+        //     const marr = [1,2,3]
+        //     const ele = 4;
+
+        //      pushValue(marr,ele)
+            
+
+        //      const str1 = "osman"
+        //      const str2 = "saifi"
+
+        //      const newStr = str1.concat(str2)
+        //      console.log(newStr)
+
+
+        //      // forEach loop
+
+        //      const earr = [1,2,3,4,5];
+
+        //      earr.forEach((i) => {
+        //         console.log(i)
+        //      })
+
+        //      console.log('A' - 1);
+        //      console.log("tilak" + "100")
+
+
+        function validateInput(arr){
+            if(typeof arr == "object" && arr.length >=1){
+              return true
+            }else{
+              return false
             }
-            
-            function pushValue(marr, ele){
-                console.log(marr)
-
-                marr.push(ele)
-                console.log(marr)
-
-                marr.pop(marr.length -1)
-                console.log(marr)
-
-                marr.shift(0)
-                console.log(marr)
-
-                marr.unshift(0);
-                console.log(marr)
-            }
-            const marr = [1,2,3]
-            const ele = 4;
-
-             pushValue(marr,ele)
-            
-
-             const str1 = "osman"
-             const str2 = "saifi"
-
-             const newStr = str1.concat(str2)
-             console.log(newStr)
-
-
-             // forEach loop
-
-             const earr = [1,2,3,4,5];
-
-             earr.forEach((i) => {
-                console.log(i)
-             })
-
-             console.log('A' - 1);
-             console.log("tilak" + "100")
+          }
+          console.log(validateInput([1,2,3]))

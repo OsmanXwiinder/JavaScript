@@ -3,34 +3,61 @@ import chalk from 'chalk'
 
 const app = express();
 
-app.use(express.json())
 
-app.get('/health-checkup', (req,res) => {
+
     
-    const username = req.headers.username     
-    const password = req.headers.password      
-    const kidneysId = req.query.kidneysId     
 
+function usermiddleWare(req,res,next){
+
+    const username = req.headers.username     
+
+    const password = req.headers.password   
     if(username != "osman" || password != "pass"){   
         res.status(400).json({
             msg:"User does not exits"
         })
-        return
+        
+    }else{
+        next()
     }
+}
+
+
+ function KidneyMiddleware(req,res,next){
+
+    const kidneysId = req.query.kidneysId  
+
     if(kidneysId != 1 && kidneysId != 2){ 
         res.status(400).json({
             msg:"wrong input"
         })
-        return
+        
+    }else{
+        next()
     }
+ }
 
-    res.json({
-        msg:"Your Kidneys is fine"
-    });
+
+ let numberofRequest = 0;
+function calculateRequest(req,res,next){
+    numberofRequest++
+    console.log(numberofRequest)
+    next()
+}
+app.use(express.json()) // convert body content to a json 
+
+app.get('/req',calculateRequest,(req,res) => {
+
+})
+
+app.get('/health-checkup',usermiddleWare,KidneyMiddleware, (req,res) => {
+    res.json({msg:"Your heart is healthy"})
 })
 
 
-
+app.get('/kidney-checkup',usermiddleWare,KidneyMiddleware, (req,res) => {
+    res.json({msg:"Your kidney is healthy"})
+})
 
 
 const port = 3000;
