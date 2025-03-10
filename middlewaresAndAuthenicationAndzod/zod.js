@@ -18,6 +18,6 @@ function newValidate(obj){
     
     })
     const response1 = objSchema.safeParse(obj);
-    console.log(response1)
+    console.log(response1);
 }
-newValidate({email:"osmansaifi30@gmail.com",password:"osmansai"})
+newValidate({email:"osmansaifi30@gmail.com",password:"osmansai"});
