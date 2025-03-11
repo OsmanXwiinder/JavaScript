@@ -1,0 +1,10 @@
+#node_module
+node_module/
+
+#json
+package-lock.json
+#json2
+package.json
+
+#git
+.gitignore

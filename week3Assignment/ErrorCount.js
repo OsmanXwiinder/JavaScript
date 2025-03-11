@@ -6,7 +6,6 @@ let ErrorCount = 0;
 function errCount(err,req,res,next) {
     ErrorCount++
     next(err)
-    
 }
 
 app.use(express.json())
