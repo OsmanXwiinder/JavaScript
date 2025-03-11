@@ -1,4 +1,4 @@
-import zod, { z } from 'zod';
+import zod from 'zod';
 
 
 
@@ -18,12 +18,15 @@ function newValidate(obj){
     
     })
     const response1 = objSchema.safeParse(obj);
-    console.log(response1)
+    console.log(response1);
 }
+
 newValidate({email:"osmansaifi30@gmail.com",password:"osmansai"})
 
 
-const schemaNew = z.coerce.string();
+const schemaNew = zod.coerce.string();
 
 const response3 = schemaNew.parse('sss');
 console.log(response3)
+
+
