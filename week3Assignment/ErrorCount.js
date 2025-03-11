@@ -1,6 +1,6 @@
 const { error } = require('console')
 const express = require('express')
-const app = express()
+const app = express();
 
 let ErrorCount = 0;
 function errCount(err,req,res,next) {
@@ -10,7 +10,7 @@ function errCount(err,req,res,next) {
 
 app.use(express.json())
 
-app.get('/user',(req,res) => {
+app.get('/user',(req,res) => {  
      throw new Error("User not Found");
     res.status(200).json({name:"Jhon"})
 })
