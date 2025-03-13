@@ -8,26 +8,27 @@
 <body>
    <button onclick="GetAnimalData()">Get Data</button> 
    <button onclick="GetAnimalData1()">Get Data1</button> 
-
+    <div id="userData"></div>
 
     <!-- Javascript -->
    <script>
-    function GetAnimalData(){
-      const res =  fetch('https://fakerapi.it/api/v1/persons')
-      .then((res) => {
-        const data = res.json()
-        .then((data) => {
-            console.log(data)
-        }).catch((Error) => {
-            console.log(Error)
-        })
-      })
-    }
+    // function GetAnimalData(){
+    //   const res =  fetch('https://fakerapi.it/api/v1/persons') 
+    //   .then((res) => {
+    //     const data = res.json()
+    //     .then((data) => {
+    //         console.log(data)
+    //     }).catch((Error) => {
+    //         console.log(Error)
+    //     })
+    //   })
+    // }
         // Another Method to fetch using Aysnc await
         async function GetAnimalData1(){
             const respo = await fetch('https://fakerapi.it/api/v1/persons')
-            const data1 = respo.json()
-            console.log(data1)
+            const finalData  = await respo.json()
+            document.getElementById('userData').innerHTML = JSON.stringify(finalData);
+            console.log(finalData)
         }
    </script>    
 </body>

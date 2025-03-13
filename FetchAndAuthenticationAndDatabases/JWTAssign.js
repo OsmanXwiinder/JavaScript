@@ -1,8 +1,10 @@
+
 const express = require('express');
 const jwt = require('jsonwebtoken');
+
 const jwtpassword = "123456"
 const app = express();
-
+app.use(express.json()) 
 const ALL_USERS = [
     {
       "username": "john.doe@example.com",
@@ -33,27 +35,31 @@ const ALL_USERS = [
   function userExists(username,password,next){
     //write a logic to return true or false
     // in All_users Array
-    if(username === ALL_USERS[username] && password === ALL_USERS[password]){
+    
+    for(let i=0; i<ALL_USERS.length; i++){
+      if(ALL_USERS[i].username == username && ALL_USERS[i].password == password){
         return true
-    }else{
-        return false
+      }
     }
-    next()
-
+     return false 
   }
 
-app.use(express.json()) 
+
+  // app.use(userExists)
 
 app.post('/SignIn', (req,res) => {
     const username = req.body.username
     const password = req.body.password
 
+    console.log(username) //
+    console.log(password)
+
     if(!userExists(username,password)){
-        res.status(403).json({msg:"user Does not Exist"})
+      return res.status(403).json({msg:"user Does not Exist"})  
     }
     // creating a token 
 
-    var token = jwt.sign({username:username}, "securePass123");
+    var token = jwt.sign({username: username}, jwtpassword);
     return res.json({
         token,
     })
@@ -61,18 +67,27 @@ app.post('/SignIn', (req,res) => {
 })
 
 app.get('/users', (req,res) => {
-    const token = req.headers.authorization;
+    const token = req.headers.authorization; 
+
+    if(!token) {
+      return res.status(401).json({ msg: "No token provided" });
+  }
     try{
-        const decode = jwt.verify(token,jwtpassword);
+         const decode = jwt.verify(token,jwtpassword);
         const username = decode.username
         // return a list os users other than this username
+       
+           let loggedUsers = ALL_USERS.filter(user => user.username !== username )
+           return res.status(200).json(loggedUsers)
+          
     }catch(err){
-        return res.status(403).json({msg:"Invalid Token"})
+        return res.status(403).json({msg:"Invalid Token"})  
     }
 })
 
+app.use((err,req,res,next) => {
+  res.json("Error")
+})
 
-
-
-const port = 3000;
+const port = 3003;
 app.listen(port,() => console.log(`Server started in port - ${port}`))    
