@@ -84,7 +84,7 @@ app.get('/users', (req,res) => {
         return res.status(403).json({msg:"Invalid Token"})  
     }
 })
-
+ // global catches
 app.use((err,req,res,next) => {
   res.json("Error")
 })

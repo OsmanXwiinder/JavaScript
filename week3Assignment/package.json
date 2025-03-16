@@ -13,6 +13,8 @@
     "express": "^4.21.2"
   },
   "devDependencies": {
-    "supertest": "^7.0.0"
+    "@types/jest": "^29.5.14",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.6"
   }
 }
