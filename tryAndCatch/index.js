@@ -19,4 +19,4 @@ try{
     console.log("inside catch statment") 
 }
 
-console.log("hi there")
+console.log("hi there");

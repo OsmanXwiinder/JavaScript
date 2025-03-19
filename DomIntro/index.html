@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input  id="input1" type="text" placeholder="fisrtValue.."><br>
+    <input  id="input2" type="text" placeholder="secondValue.."><br>
+    <button onclick="getSum2()">Calculate Sum</button>
+    <div id="result"></div>
+
+
+
+<!--  ------------------------------------------------   -->
+    <script>
+        // const A = document.getElementById('input1')
+        // const B = document.getElementById('input2')
+        // //getting element
+        // function calculateSum() {
+        //      let a = A.value
+        //     let b = B.value
+        //      let new1 = parseInt(a)
+        //     let new2 = parseInt(b)
+        //     let Sum = eval(new1 + new2)
+        //   const result = document.getElementById('result');
+        //   result.innerHTML =`sum is ` + Sum;
+        // }
+        const A = document.getElementById('input1')
+        const B = document.getElementById('input2')
+        const div = document.getElementById('result')
+          function getSum(){
+            const a = A.value;
+        const b = B.value;   
+        
+         fetch('http://localhost:3000/sum?a=' + a + '&b=' + b)
+        .then((res) => {console.log(res)
+             res.text()
+            .then((ans) => {console.log(ans)
+                div.innerHTML = ans
+            })
+            
+        })   
+           
+        }
+        
+        async function getSum2(){
+            const a = A.value;
+            const b = B.value; 
+            
+            const response = await fetch('http://localhost:3000/sum?a=' + a + '&b=' + b)
+            const ans = await response.text()
+            div.innerHTML = ans
+        }
+
+        // async function getSum(a,b) {
+        //     const res = await fetch('http://localhost:3000/sum')
+        //     const resJson = await res.json()
+        //     .then((data) => console.log(data))
+        //     .catch((e) => console.log(e,"Getting Error"))
+        // }
+    </script>
+</body>
+</html>
