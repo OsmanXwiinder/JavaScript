@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="loan" type="text" placeholder="loan"><br>
+    <input id="rate" type="text" placeholder="rate"><br>
+    <input id="time" type="text" placeholder="time"><br>
+    <div id="result"></div>
+    <button onclick="GetLoan()">Get Loan</button>
+    <button onclick="GetLoan2()">Get Loan 2</button>
+
+    <!-- ------------------------------------------------ -->
+     <script>
+        const loan = document.getElementById('loan')
+        const rate = document.getElementById('rate')
+        const time = document.getElementById('time')
+        const result = document.getElementById('result')
+        function GetLoan(){
+            const p = loan.value
+            const r = rate.value
+            const t = time.value
+
+            fetch(`http://localhost:3000/loan?p=${p}&r=${r}&t=${t}`)
+            .then((data) => {
+                console.log(data)
+                data.text().then((ans) => {console.log(ans)
+                    result.innerHTML = "interest is: "+ ans;
+                })
+                
+            })
+        }
+
+        async  function GetLoan2(){
+            const p = loan.value
+            const r = rate.value
+            const t = time.value    
+            const response = await fetch(`http://localhost:3000/loan?p=${p}&r=${r}&t=${t}`)
+            const ans = await response.text()
+            result.innerHTML = "interest is: "+ ans;
+        }
+
+     </script>
+
+</body>
+</html>
