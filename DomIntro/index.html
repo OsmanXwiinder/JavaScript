@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <input  id="input1" type="text" placeholder="fisrtValue.."><br>
-    <input  id="input2" type="text" placeholder="secondValue.."><br>
+    <input oninput="debouncingGetSumFunc()"  id="input1" type="text" placeholder="fisrtValue.."><br>
+    <input oninput="debouncingGetSumFunc()"  id="input2" type="text" placeholder="secondValue.."><br>
     <button onclick="getSum2()">Calculate Sum</button>
     <div id="result"></div>
 
@@ -30,9 +30,20 @@
         const A = document.getElementById('input1')
         const B = document.getElementById('input2')
         const div = document.getElementById('result')
+        let timeout;
+        function debouncingGetSumFunc(){
+            // how do you cancle a clock
+
+            clearTimeout(timeout)
+            timeout = setTimeout(() => {
+                getSum()
+            },1000)
+           
+        }
+         
           function getSum(){
             const a = A.value;
-        const b = B.value;   
+            const b = B.value;   
         
          fetch('http://localhost:3000/sum?a=' + a + '&b=' + b)
         .then((res) => {console.log(res)
@@ -45,10 +56,39 @@
            
         }
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         async function getSum2(){
             const a = A.value;
             const b = B.value; 
-            
+
             const response = await fetch('http://localhost:3000/sum?a=' + a + '&b=' + b)
             const ans = await response.text()
             div.innerHTML = ans
