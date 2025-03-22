@@ -1,0 +1,55 @@
+<html>
+    <script>
+        let globalId = 1;
+        
+        function MarkAsDone(todoId){
+            const parent = document.getElementById(todoId)
+            parent.children[2].innerHTML = "Completed"
+            parent.children[2].style.backgroundColor = "green"
+            parent.children[2].style.color = "white"
+
+    //         parent.style.opacity = "0"; // Makes it fade out
+    // setTimeout(() => {
+    //     parent.remove(); // Removes it after fading
+    // }, 2000); // Waits 1 second (1000 milliseconds)
+        }
+
+        function createChild(title, todo, id ){
+            
+            const childDiv = document.createElement('div');
+            const titleDiv = document.createElement('div')
+            titleDiv.innerHTML = title
+            const todoDiv = document.createElement('div')
+            todoDiv.innerHTML = todo
+            const deleteBtn = document.createElement('button');
+            deleteBtn.innerHTML =  "Mark as Done" 
+            deleteBtn.setAttribute('onclick', `MarkAsDone(${id})`)
+            childDiv.appendChild(titleDiv)
+            childDiv.appendChild(todoDiv)
+            childDiv.appendChild(deleteBtn)
+            childDiv.setAttribute('id', id);
+
+            return childDiv;
+        }
+
+        function addTodo(){
+            const title = document.getElementById('title').value;
+            const todo = document.getElementById('todo').value;
+            const Container = document.getElementById('Container')
+            Container.appendChild(createChild(title,todo,globalId++)) 
+            
+        }
+     </script>
+
+
+    <div>
+        <input id="title" type="text" placeholder="title"><br>
+        <input id="todo" type="text" placeholder="Todo..."><br>
+    </div>
+    <div>
+        <button onclick="addTodo()">Add Todo</button>
+    </div>  
+
+    <div id="Container"></div>
+
+</html>
