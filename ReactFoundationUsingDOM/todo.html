@@ -4,9 +4,12 @@
         
         function MarkAsDone(todoId){
             const parent = document.getElementById(todoId)
+            
             parent.children[2].innerHTML = "Completed"
             parent.children[2].style.backgroundColor = "green"
             parent.children[2].style.color = "white"
+            parent.children[2].style.borderRadius = "10px"
+            parent.children[2].style.padding = "10px"
 
     //         parent.style.opacity = "0"; // Makes it fade out
     // setTimeout(() => {
