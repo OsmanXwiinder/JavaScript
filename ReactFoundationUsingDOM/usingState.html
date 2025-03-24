@@ -1,12 +1,65 @@
 <html>
+    <body>
+        
+    
     <div>
-        <input type="text" placeholder="title">
-        <input type="text" placeholder="todo">
-        <button>Add</button>
+        <input id="title" type="text" placeholder="title"><br>
+        <input id="todo" type="text" placeholder="Todo..."><br>
     </div>
+    <div>
+       <!-- <button onclick="updateDemoAccToState()">Add</button> -->
+        
+    <div id="container"></div>
+    </div>  
+
 
     <script>
+        // let globalId = 1;
 
-    </script>
+        function createChild(title, todo, id ){
+                        
+            const childDiv = document.createElement('div');
+            const titleDiv = document.createElement('div')
+            titleDiv.innerHTML = title
+            const todoDiv = document.createElement('div')
+            todoDiv.innerHTML = todo
+            const deleteBtn = document.createElement('button');
+            deleteBtn.innerHTML =  "Mark as Done" 
+            deleteBtn.setAttribute('onclick', `MarkAsDone(${id})`)
+            childDiv.appendChild(titleDiv)
+            childDiv.appendChild(todoDiv)
+            childDiv.appendChild(deleteBtn)
+            childDiv.setAttribute('id', id);
 
-</html>
+            return childDiv;
+        }
+
+        function updateDemoAccToState(state) {
+            const parent = document.getElementById('container');
+            if (!parent) {
+                console.log("Error: Container not found");
+                return;
+            }
+            parent.innerHTML = "";
+            
+           for(let i=0; i<state.length; i++){
+            const child = createChild(state[i].title, state[i].description, state[i].id);
+              parent.appendChild(child); 
+           }
+        }
+        window.setInterval(async () =>{ 
+          try{
+            const response = await fetch("http://localhost:3000/todos")
+            const jsonData = await response.json();
+            console.log(jsonData)
+            updateDemoAccToState([jsonData]);    
+            
+          }catch(err){
+            console.log(err);
+          }
+
+        },5000)
+        
+     </script>
+     </body>
+</html> 
