@@ -26,7 +26,7 @@
             deleteBtn.innerHTML =  "Mark as Done" 
             deleteBtn.setAttribute('onclick', `removeTodo(${id})`)
             childDiv.appendChild(titleDiv)
-            childDiv.appendChild(todoDiv)
+            childDiv.appendChild(descripDiv)
             childDiv.appendChild(deleteBtn)
             childDiv.setAttribute('id', id);
 
@@ -45,20 +45,20 @@
             element.children[2].innerHTML = newTodo.completed ? "Mark as done" : "Done";
         }
         /*
-        // Calculate the diff b/w newTodos and oldTodos
-            // More specifically, find out what todos are
-            // 1. added
-            // 2. deleted       
-            // 3. updated
-            // Calculate these 3 arrays
-            // call addTodo, removeTodo, updateTodo functions on each of the
-            // elements
+         Calculate the diff b/w newTodos and oldTodos
+             More specifically, find out what todos are
+             1. added
+             2. deleted       
+             3. updated
+             Calculate these 3 arrays
+             call addTodo, removeTodo, updateTodo functions on each of the
+             elements
         */ 
         
         function updateState(newTodos) {
             
             const added = newTodos.filter(
-                newTodo => !newTodos.some(oldTodo => oldTodo.id === newTodo.id)
+                newTodo => !oldTodoState.some(oldTodo => oldTodo.id === newTodo.id)
             )
             const deleted = oldTodoState.filter(
                 oldTodo => !newTodos.some(newTodo => newTodo.id === oldTodo.id)
@@ -79,18 +79,18 @@
             const title = document.getElementById("title").value;
             const description = document.getElementById("description").value;
             if(title && description){
-                todoState.push({
+               let newOBj = {
                 title: title,
                 description: description,
                 id: globalId++,
-            });
+            };
             }           
+            
+            document.getElementById('container').appendChild(CreateTodoElement())
             updateState(todoState);
             document.getElementById('title').value = "";
             document.getElementById('description').value = "";   
         }
-        
-        
     </script>
 </body>
 </html>
